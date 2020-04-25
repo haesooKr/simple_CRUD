@@ -4,8 +4,13 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const express = require('express');
 
+const employeeController = require('./controllers/employeeController')
+
 const app = express();
+
 
 app.listen(PORT, () => {
   console.log(`Express server is running on http://localhost:${PORT}`);
 })
+
+app.use('/employee', employeeController)
