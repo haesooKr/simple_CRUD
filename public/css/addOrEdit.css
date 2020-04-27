@@ -47,3 +47,9 @@ h3 {
 .form-row .form-col{
   width: 40%;
 }
+
+.text-danger {
+  margin-top: 10px;
+  color: red;
+  font-size: 12px;
+}
