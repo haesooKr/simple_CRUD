@@ -6,7 +6,7 @@ const Employee = mongoose.model('Employee')
 router.get("/", (req, res) => {
   res.render("employee/addOrEdit", {
     viewTitle: "Insert Employee",
-    style: "addOrEdit",
+    style: "/css/employee"
   });
 });
 
@@ -30,7 +30,7 @@ function insertRecord(req, res){
         res.render("employee/addOrEdit", {
           viewTitle: "Insert Employee",
           employee: req.body,
-          style: "addOrEdit"
+          style: "/css/employee"
         });
       } else {
         console.log('Error during record insertion : ' + err)
@@ -43,7 +43,8 @@ router.get("/list", (req, res) => {
   Employee.find((err, docs) => {
     if(!err){
       res.render("employee/list", {
-        list: docs
+        list: docs,
+        style: "/css/employee"
       });
     } else {
       console.log("Error in retrieving employee list : " + err);
