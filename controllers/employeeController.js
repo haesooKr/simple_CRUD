@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Employee = mongoose.model('Employee')
 
+mongoose.set('useFindAndModify', false);
+
 router.get("/", (req, res) => {
   res.render("employee/addOrEdit", {
     viewTitle: "Insert Employee",
@@ -11,7 +13,12 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  insertRecord(req, res);
+  if(req.body._id == ''){
+    insertRecord(req, res);
+  } else {
+    modifyRecord(req, res);
+  }
+  
 });
 
 function insertRecord(req, res){
@@ -24,6 +31,24 @@ function insertRecord(req, res){
     if(!err){
       res.redirect('employee/list');
     }
+    else {
+      if(err.name == "ValidationError"){
+        handleValidationError(err, req.body);
+        res.render("employee/addOrEdit", {
+          viewTitle: "Insert Employee",
+          employee: req.body,
+          style: "/css/employee"
+        });
+      } else {
+        console.log('Error during record insertion : ' + err)
+      }
+    }
+  })
+}
+
+function modifyRecord(req, res){
+  Employee.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+    if (!err) { res.redirect('employee/list'); }
     else {
       if(err.name == "ValidationError"){
         handleValidationError(err, req.body);
