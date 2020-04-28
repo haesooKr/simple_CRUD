@@ -1,25 +1,14 @@
-<table>
-  <thead>
-    <tr>
-      <th>Full Name</th>
-      <th>Email</th>
-      <th>Mobile</th>
-      <th>City</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each list}}
-    <tr>
-      <td>{{this.fullName}}</td>
-      <td>{{this.email}}</td>
-      <td>{{this.mobile}}</td>
-      <td>{{this.city}}</td>
-      <td>
-        <a href="">Edit</a>
-        <a href="">Delete</a>
-      </td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+<div class="list">
+  {{#each list}}
+  <div class="list-item">
+    <ul>
+      <li>Name: {{this.fullName}}</li>
+      <li>Email: {{this.email}}</li>
+      <li>Mobile: {{this.mobile}}</li>
+      <li>City: {{this.city}}</li>
+    </ul>
+    <a href="">Modify</a>
+    <a href="">Delete</a>
+  </div>
+  {{/each}}
+</div>
