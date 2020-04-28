@@ -53,3 +53,20 @@ h3 {
   color: red;
   font-size: 12px;
 }
+
+
+/* table */
+.list {
+  min-width: 70vw;
+}
+.list-item {
+  margin: 5px 0 10px 0;
+  border-top: 1px solid rgb(202, 202, 202);
+}
+.list-item ul {
+  padding: 0;
+}
+.list-item li {
+  margin: 3px 0;
+  list-style-type: none;
+}
