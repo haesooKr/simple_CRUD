@@ -67,4 +67,19 @@ function handleValidationError(err, body){
   }
 }
 
+router.get('/:id', (req, res) => {
+  Employee.findById(req.params.id, (err, doc) => {
+    console.log(doc);
+    if(!err){
+      res.render("employee/addOrEdit", {
+        viewTitle: "Update Employee",
+        employee: doc,
+        style: '/css/employee'
+      })
+    } else {
+      console.log('error');
+    }
+  })
+})
+
 module.exports = router;
