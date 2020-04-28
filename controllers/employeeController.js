@@ -94,7 +94,6 @@ function handleValidationError(err, body){
 
 router.get('/:id', (req, res) => {
   Employee.findById(req.params.id, (err, doc) => {
-    console.log(doc);
     if(!err){
       res.render("employee/addOrEdit", {
         viewTitle: "Update Employee",
@@ -103,6 +102,16 @@ router.get('/:id', (req, res) => {
       })
     } else {
       console.log('error');
+    }
+  })
+})
+
+router.get('/delete/:id', (req, res) => {
+  Employee.findByIdAndDelete(req.params.id, (err, doc) => {
+    if(!err){
+      res.redirect("/employee/list");
+    } else {
+      console.log("Error in employee delete : " + err);
     }
   })
 })
