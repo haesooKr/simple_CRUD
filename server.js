@@ -33,3 +33,7 @@ app.listen(PORT, () => {
 })
 
 app.use('/employee', employeeController)
+
+app.get('/', (req, res) => {
+  res.send('Simple Crud Home.')
+})
